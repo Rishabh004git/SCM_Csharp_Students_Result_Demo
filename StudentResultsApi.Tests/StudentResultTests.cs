@@ -15,4 +15,15 @@ public class StudentResultTests
         Assert.Equal("Asha", result.Student);
         Assert.Equal(70, result.Total);
     }
+
+    [Fact]
+    public void GetResult_ReturnsDifferentStudent()
+    {
+        var service = new ResultService();
+
+        var result = service.GetResult("Raj");
+
+        Assert.Equal("Raj", result.Student);
+        Assert.NotNull(result.Total);
+    }
 }
