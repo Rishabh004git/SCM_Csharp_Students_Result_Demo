@@ -24,6 +24,18 @@ public class StudentResultTests
         var result = service.GetResult("Raj");
 
         Assert.Equal("Raj", result.Student);
-        Assert.NotNull(result.Total);
+        Assert.True(result.Total > 0);
+    }
+
+    [Fact]
+    public void GetResult_ReturnsValidTotalScore()
+    {
+        var service = new ResultService();
+
+        var result = service.GetResult("Asha");
+
+        Assert.NotNull(result);
+        Assert.True(result.Total >= 0, "Total score should be non-negative");
+        Assert.True(result.Total <= 100, "Total score should not exceed 100");
     }
 }
